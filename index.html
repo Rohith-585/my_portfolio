@@ -1,0 +1,632 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohith Reddy - CS Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+        scroll-padding-top: 1.35rem; /* Adjust this value as needed */
+        }
+        /* Custom scrollbar styling for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #171717; /* Dark gray for track */
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #d4d4d4; /* Light gray for the scrollbar */
+            border-radius: 4px;
+        }
+        
+        /* Animation for sections on scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Timeline-specific styles */
+        .timeline-container {
+            position: relative;
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: #3f3f46; /* Gray line */
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            width: 16px;
+            height: 16px;
+            background: #ca8a04; /* Golden yellow dot */
+            border: 2px solid #171717;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        .timeline-item:nth-child(even) .timeline-card {
+            margin-left: 50px;
+        }
+        .timeline-item:nth-child(odd) .timeline-card {
+            margin-right: 0px;
+        }
+        @media (min-width: 768px) {
+            .timeline-item:nth-child(even) .timeline-card {
+                margin-left: 0;
+                transform: translateX(-100%);
+            }
+            .timeline-item:nth-child(odd) .timeline-card {
+                margin-right: 0;
+                transform: translateX(100%);
+            }
+        }
+        
+    </style>
+</head>
+<body class="bg-neutral-950 text-white min-h-screen font-sans">
+
+    <script>
+        const portfolioData = {
+            name: "IREDDY ROHITH REDDY",
+            title: "Computer Science Student & AI Specialist",
+            bio: "I'm Rohith Reddy, a passionate Computer Science and Engineering student at CMR Institute of Technology, with a keen interest in AI, web development, and data-driven applications. As a beginner in the tech field, I’m focused on building a strong foundation through hands-on projects and continuous learning. I’ve worked on real-time applications using technologies like Java, Python, Django, and Firebase, and I enjoy exploring how software can solve real-world problems. With a curiosity-driven mindset and active participation in developer communities like GDSC and GeeksforGeeks, I’m eager to grow, collaborate, and contribute meaningfully to the tech ecosystem.",
+            education: [
+                {
+                    degree: "B.Tech in Computer Science & Engineering",
+                    institution: "CMR Institute of Technology, Hyderabad",
+                    grade: "CGPA: 9.29/10",
+                    dates: "2022 - 2026",
+                },
+                {
+                    degree: "Higher Secondary School (12th Grade)",
+                    institution: "Alphores Junior College,Karimnagar",
+                    grade: "Percentage: 98.10%",
+                    dates: "2020 - 2022",
+                },
+                {
+                    degree: "Secondary School (10th Grade)",
+                    institution: "Alphores High School,Sulthanabad",
+                    grade: "Percentage: 95%",
+                    dates: "2020",
+                },
+            ],
+            skills: [
+                {
+                    category: "Languages",
+                    list: [ "C", "Java", "Python"]
+                },
+                {
+                    category: "Web Development",
+                    list: [ "HTML", "CSS", "JavaScript", "React", "Django"]
+                },
+                {
+                    category: "Database Management",
+                    list: [ "SQL", "MongoDB"]
+                }
+            ],
+            codingProfiles: [
+                {
+                    platform: "CodeChef",
+                    username: "rohith_585",
+                    rating: 947,
+                    icon_svg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chef-hat"><path d="M12 2a5 5 0 0 0-5 5v3c0 2 1 3 4 3h6v2H6a3 3 0 0 0-3 3v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2a3 3 0 0 0-3-3h-2v-3c0-2-1-3-4-3a5 5 0 0 0-5-5z"/></svg>`,
+                    link: "https://www.codechef.com/users/rohith_585"
+                },
+                {
+                    platform: "Codeforces",
+                    username: "22r01a0585_26",
+                    rating: 877,
+                    icon_svg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>`,
+                    link: "https://codeforces.com/profile/22r01a0585_26"
+                },
+                {
+                    platform: "LeetCode",
+                    username: "rohith_585",
+                    rating: 1313.32,
+                    icon_svg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+                    link: "https://leetcode.com/rohith_585"
+                },
+                {
+                    platform: "GeeksforGeeks",
+                    username: "22r01a0585",
+                    icon_svg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.4 18 2c1 2.4 2 5.3 2 8c0 1.9-.3 3.5-.6 4.8"/><path d="M2 13C2 9 6 6 8 4c0 1.5.7 3.2 2 5.5c-.7-.4-1.5-.7-2.3-.9c-1.2.7-2.7 2-3.7 3.6c-1.4 2.4-2.5 5.5-2 8c1.3.4 3.2-.3 5-1.5c1.4-1.2 2-2.9 2-4.5c0-1.1-.3-2.3-1-3.4"/></svg>`,
+                    link: "https://auth.geeksforgeeks.org/user/22r01a0585"
+                },
+                {
+                    platform: "HackerRank",
+                    username: "22r01a0585",
+                    icon_svg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+                    link: "https://www.hackerrank.com/22r01a0585"
+                },
+            ],
+            projects: [
+                {
+                    title: "Credential Verification System",
+                    description: "Built a credential verification system using Django to streamline hiring processes by enabling employers to validate candidate details efficiently. The platform ensures secure access and centralized management of academic and professional records.",
+                    skills: ["Django", "HTML", "CSS", "Python"],
+                    image: "cred.png",
+                    liveLink: "https://github.com/Rohith-585/Hiring-project",
+                    githubLink: "https://github.com/Rohith-585/Hiring-project",
+                },
+                {
+                    title: "Chat Application",
+                    description: "Developed a real-time chat app using Java in Android Studio with Firebase backend for seamless messaging. Implemented OTP-based login, user search, and push notifications for a smooth and secure chat experience.",
+                    skills: ["Android Studio", "Java", "Firebase"],
+                    image: "chat.png",
+                    liveLink: "https://github.com/Rohith-585/Chat-app",
+                    githubLink: "https://github.com/Rohith-585/Chat-app",
+                },
+                {
+                    title: "Bluetooth Chat Application",
+                    description: "Created a Bluetooth-based chat application for Android devices, enabling offline communication between users. The app allows users to send and receive messages without internet connectivity, showcasing the use of Bluetooth technology in mobile applications.",
+                    skills: ["Android Studio", "kotlin", "Bluetooth"],
+                    image: "blue.png",
+                    liveLink: "https://github.com/Rohith-585/Bluetooth-chat-app.git",
+                    githubLink: "https://github.com/Rohith-585/Bluetooth-chat-app.git",
+                },
+            ],
+            contact: {
+                email: "rohithreddy5455@gmail.com",
+                github: "https://github.com/Rohith-585",
+                linkedin: "https://www.linkedin.com/in/rohith-reddy-2b59b2284",
+                resumeLink: "https://drive.google.com/file/d/1oTbV3mgpxZBjER9iVXq-s0WAu8ri3g44/view?usp=sharing" // Placeholder for resume link
+            },
+            activities: [
+                "Part-Time Tutor for 1-10 CBSE students",
+                "Worked on research papers or innovative projects in AI, Data Science, or Software Development",
+                "An avid reader of Non-fictional books",
+                "Loves to travel and explore",
+                "Enjoys watching tech documentaries and series"
+            ]
+        };
+    </script>
+
+    <header class="sticky top-0 z-50 w-full bg-neutral-900/80 backdrop-blur-sm border-b border-neutral-800">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center text-white">
+            <a href="#home" class="flex items-center text-xl font-bold hover:text-amber-400 transition-colors">
+                <img src="letter-r.gif" alt="Profile" class="h-8 w-8 rounded-full object-cover mr-2">
+                <script>document.write(portfolioData.name)</script>
+            </a>
+            <ul class="flex space-x-6 md:space-x-4">
+                <li><a href="#about" class="px-3 py-2 text-sm md:text-base font-medium rounded-full border border-white transition-all hover:border-amber-400 hover:text-amber-400 hover:shadow-lg hover:shadow-amber-400/50">About</a></li>
+                <li><a href="#education" class="px-3 py-2 text-sm md:text-base font-medium rounded-full border border-white transition-all hover:border-amber-400 hover:text-amber-400 hover:shadow-lg hover:shadow-amber-400/50">Education</a></li>
+                <li><a href="#skills" class="px-3 py-2 text-sm md:text-base font-medium rounded-full border border-white transition-all hover:border-amber-400 hover:text-amber-400 hover:shadow-lg hover:shadow-amber-400/50">Skills</a></li>
+                <li><a href="#coding-profiles" class="px-3 py-2 text-sm md:text-base font-medium rounded-full border border-white transition-all hover:border-amber-400 hover:text-amber-400 hover:shadow-lg hover:shadow-amber-400/50">Coding Profiles</a></li>
+                <li><a href="#projects" class="px-3 py-2 text-sm md:text-base font-medium rounded-full border border-white transition-all hover:border-amber-400 hover:text-amber-400 hover:shadow-lg hover:shadow-amber-400/50">Projects</a></li>
+                <li><a href="#activities" class="px-3 py-2 text-sm md:text-base font-medium rounded-full border border-white transition-all hover:border-amber-400 hover:text-amber-400 hover:shadow-lg hover:shadow-amber-400/50">Activities</a></li>
+                <li><a href="#contact" class="px-3 py-2 text-sm md:text-base font-medium rounded-full border border-white transition-all hover:border-amber-400 hover:text-amber-400 hover:shadow-lg hover:shadow-amber-400/50">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-8 flex-grow">
+        
+        <section id="home" class="relative min-h-screen flex flex-col md:flex-row items-center justify-center text-center md:text-left py-20 md:py-32 gap-12 animate-on-scroll overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-cover bg-center" style="background-image: url('home_background.jpg');">
+                <div class="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
+            </div>
+            
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-12">
+                <div id="profile-pic-container" class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-xl transform translate-x-0 transition-transform duration-1000 ease-in-out">
+                    <img id="profile-pic" src="profile.jpg" alt="Profile" class="w-full h-full object-cover">
+                </div>
+                <div id="hero-text-container" class="flex flex-col items-center md:items-start opacity-0 transform translate-y-8 transition-all duration-1000 ease-in-out">
+                    <p class="text-xl text-neutral-400 mb-1">Hello, I'm</p>
+                    <h1 id="hero-name" class="text-4xl md:text-6xl font-extrabold text-white mb-2 tracking-tight leading-tight">
+                        <script>document.write(portfolioData.name)</script>
+                    </h1>
+                    <p id="hero-title" class="text-xl md:text-2xl text-neutral-500 font-medium mb-6">
+                        <script>document.write(portfolioData.title)</script>
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center gap-4">
+                        <a href="https://drive.google.com/file/d/1oTbV3mgpxZBjER9iVXq-s0WAu8ri3g44/view?usp=sharing" class="bg-amber-400 hover:bg-amber-500 transition-colors text-black font-semibold py-3 px-8 rounded-full shadow-md transform hover:scale-105">
+                            Download CV
+                        </a>
+                        <a href="#contact" class="bg-neutral-900 hover:bg-neutral-800 transition-colors text-white font-semibold py-3 px-8 rounded-full shadow-md transform hover:scale-105 border border-neutral-700">
+                            Contact Info
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-16 border-t border-neutral-800 animate-on-scroll">
+            <div class="max-w-4xl mx-auto">
+                <p class="text-center text-lg font-medium text-neutral-400">Get To Know More</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-amber-400">About Me</h2>
+
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-12">
+                    <div class="flex-shrink-0 w-full md:w-1/2">
+                        <div class="rounded-3xl overflow-hidden shadow-xl border-4 border-neutral-800">
+                               <img src="about.jpg" alt="Profile" class="w-full h-auto object-cover">
+                        </div>
+                    </div>
+
+                    <div class="flex-grow w-full md:w-1/2 flex flex-col items-center md:items-start">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-8">
+                            <div class="flex flex-col items-center justify-center p-6 bg-neutral-900 rounded-xl shadow-lg border border-neutral-800 text-center transform transition-transform hover:scale-105 hover:bg-neutral-800">
+                                <img src="user.gif" alt="Profile" class="h-10 w-10 rounded-full object-cover mr-2">
+                                <span class="text-xl font-bold text-white">Experience</span>
+                                <span class="text-md font-medium text-neutral-500 mt-1">Frontend Development</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-6 bg-neutral-900 rounded-xl shadow-lg border border-neutral-800 text-center transform transition-transform hover:scale-105 hover:bg-neutral-800">
+                                <img src="graduate.gif" alt="Graduation Cap" class="h-8 w-8 rounded-full object-cover mr-2">
+                                <span class="text-xl font-bold text-white">Education</span>
+                                <span class="text-md font-medium text-neutral-500 mt-1">B.Tech. Computer Science<br/>(Data Science)</span>
+                            </div>
+                        </div>
+                        <div class="text-lg text-neutral-300 leading-relaxed text-center md:text-left">
+                            <script>document.write(`<p>${portfolioData.bio}</p>`)</script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-16 border-t border-neutral-800 animate-on-scroll">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-amber-400">Education</h2>
+            <div id="education-timeline-container" class="timeline-container max-w-4xl mx-auto">
+                </div>
+        </section>
+
+        <section id="skills" class="py-16 border-t border-neutral-800 animate-on-scroll">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-amber-400">Skills</h2>
+            <div id="skills-container" class="max-w-6xl mx-auto flex flex-col gap-8">
+                </div>
+        </section>
+        
+        <section id="coding-profiles" class="py-16 border-t border-neutral-800 animate-on-scroll">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-amber-400">Coding Profiles</h2>
+            <p class="text-center text-lg font-medium text-neutral-400 mb-10">Check up on my coding profiles</p>
+            <div id="coding-profiles-container" class="max-w-3xl mx-auto flex flex-col gap-6">
+                </div>
+        </section>
+
+        <section id="projects" class="py-16 border-t border-neutral-800 animate-on-scroll">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-amber-400">Projects</h2>
+            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                </div>
+        </section>
+
+        <section id="activities" class="py-16 border-t border-neutral-800 animate-on-scroll ">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-amber-400">Activities & Interests</h2>
+            <div id="activities-container" class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                </div>
+        </section>
+
+        <section id="contact" class="py-16 border-t border-neutral-800 animate-on-scroll">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-amber-400">Get In Touch</h2>
+            <p class="text-center text-lg text-neutral-300 mb-8">
+                I'm currently seeking new opportunities and projects. Feel free to reach out!
+            </p>
+            <div id="contact-container" class="max-w-md mx-auto flex flex-col gap-4 ">
+                <a href="mailto:rohithreddy5455@gmail.com" class="flex items-center justify-center p-4 bg-neutral-900 rounded-xl shadow-lg border border-neutral-800 transform transition-transform hover:scale-105 hover:bg-neutral-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail text-white mr-4"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <span class="text-lg text-white">rohithreddy5455@gmail.com</span>
+                </a>
+                <a href="https://www.linkedin.com/in/rohith-reddy-2b59b2284" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center p-4 bg-neutral-900 rounded-xl shadow-lg border border-neutral-800 transform transition-transform hover:scale-105 hover:bg-neutral-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin text-white mr-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2a2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                    <span class="text-lg text-white">LinkedIn Profile</span>
+                </a>
+                <a href="https://github.com/Rohith-585" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center p-4 bg-neutral-900 rounded-xl shadow-lg border border-neutral-800 transform transition-transform hover:scale-105 hover:bg-neutral-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github text-white mr-4"><path d="M15 22s-4-4-5-5c0 0-4 1-4-2s1-4 4-4c0 0 4-2 4-5c0 0 3 0 3-3"/><path d="M9 22s-4-4-5-5c0 0-4 1-4-2s1-4 4-4c0 0 4-2 4-5c0 0 3 0 3-3"/></svg>
+                    <span class="text-lg text-white">GitHub Profile</span>
+                </a>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="w-full bg-neutral-900 py-6 text-center text-neutral-500">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2024 IREDDY ROHITH REDDY. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const educationContainer = document.getElementById('education-timeline-container');
+            const skillsContainer = document.getElementById('skills-container');
+            const codingProfilesContainer = document.getElementById('coding-profiles-container');
+            const projectsContainer = document.getElementById('projects-container');
+            const activitiesContainer = document.getElementById('activities-container');
+            
+            // Function to generate the education section
+            const populateEducation = () => {
+                educationContainer.innerHTML = ''; // Clear existing content
+                portfolioData.education.forEach((entry, index) => {
+                    const educationElement = document.createElement('div');
+                    educationElement.className = `timeline-item flex w-full justify-center md:justify-start`;
+                    
+                    if (index % 2 === 1) { // Alternate for a staggered layout
+                        educationElement.classList.add('md:flex-row-reverse');
+                    }
+
+                    const card = document.createElement('div');
+                    card.className = `timeline-card w-full md:w-1/2 p-6 bg-neutral-900 rounded-xl shadow-lg border border-neutral-800 transform transition-transform hover:scale-105 hover:bg-neutral-800`;
+                    card.innerHTML = `
+                        <h3 class="text-xl font-bold text-white mb-2">${entry.degree}</h3>
+                        <p class="text-md text-neutral-500">${entry.institution}</p>
+                        <p class="text-sm text-neutral-400 mt-2">${entry.dates}</p>
+                        <p class="text-sm text-neutral-400 mt-1">${entry.grade}</p>
+                    `;
+                    educationElement.appendChild(card);
+                    educationContainer.appendChild(educationElement);
+                });
+            };
+
+            // Function to draw a circular progress bar and text
+            const drawCircularProgress = (canvas, percent, color) => {
+                const ctx = canvas.getContext('2d');
+                const radius = canvas.width / 2 - 5;
+                const center = canvas.width / 2;
+                const progress = percent / 100;
+            
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw background circle
+                ctx.beginPath();
+                ctx.arc(center, center, radius, 0, 2 * Math.PI);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+                ctx.lineWidth = 10;
+                ctx.stroke();
+            
+                // Draw progress arc
+                ctx.beginPath();
+                ctx.arc(center, center, radius, -Math.PI / 2, -Math.PI / 2 + progress * 2 * Math.PI);
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 10;
+                ctx.stroke();
+                
+                // Draw percentage text
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 20px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(`${percent}%`, center, center);
+            };
+
+            // Function to populate the skills section
+                const populateSkills = () => {
+        const mainContainer = document.getElementById('skills-container');
+            if (!mainContainer) return;
+            
+            mainContainer.innerHTML = `
+                <div class="w-full flex justify-center">
+                    <div class="w-[90%] max-w-[1000px] bg-[#1a1a1a] border-2 border-[#333] rounded-[50px] shadow-lg shadow-black/50 p-10 text-center mx-auto">
+                        <h2 class="text-[3.5rem] font-bold text-[#fca311] mb-[2.5rem] drop-shadow-[0_0_10px_#fca311]">Skills</h2>
+                        <div class="flex justify-around gap-[30px] flex-col md:flex-row">
+                            <div class="relative flex-1 bg-[#222] border-2 border-[#333] rounded-[20px] p-[30px] shadow-lg shadow-black/50 transition-all duration-300 cursor-pointer flex flex-col items-center justify-center min-h-[200px] hover:-translate-y-1 hover:shadow-xl hover:shadow-black/70 group overflow-hidden">
+                                <span class="text-[1.8rem] font-bold mb-[15px] text-white transition-colors duration-300 group-hover:text-[#fca311]">Languages</span>
+                                <ul class="sub-skills relative w-full opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-300 mt-4">
+                                    <li class="p-2 border-b border-b-[#333] transition-colors duration-200 hover:text-[#fca311]">C</li>
+                                    <li class="p-2 border-b border-b-[#333] transition-colors duration-200 hover:text-[#fca311]">Java</li>
+                                    <li class="p-2 transition-colors duration-200 hover:text-[#fca311]">Python</li>
+                                </ul>
+                            </div>
+                            <div class="relative flex-1 bg-[#222] border-2 border-[#333] rounded-[20px] p-[30px] shadow-lg shadow-black/50 transition-all duration-300 cursor-pointer flex flex-col items-center justify-center min-h-[200px] hover:-translate-y-1 hover:shadow-xl hover:shadow-black/70 group overflow-hidden">
+                                <span class="text-[1.8rem] font-bold mb-[15px] text-white transition-colors duration-300 group-hover:text-[#fca311]">Web Development</span>
+                                <ul class="sub-skills relative w-full opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-300 mt-4">
+                                    <li class="p-2 border-b border-b-[#333] transition-colors duration-200 hover:text-[#fca311]">HTML</li>
+                                    <li class="p-2 border-b border-b-[#333] transition-colors duration-200 hover:text-[#fca311]">CSS</li>
+                                    <li class="p-2 border-b border-b-[#333] transition-colors duration-200 hover:text-[#fca311]">JavaScript</li>
+                                    <li class="p-2 border-b border-b-[#333] transition-colors duration-200 hover:text-[#fca311]">React</li>
+                                    <li class="p-2 transition-colors duration-200 hover:text-[#fca311]">Django</li>
+                                </ul>
+                            </div>
+                            <div class="relative flex-1 bg-[#222] border-2 border-[#333] rounded-[20px] p-[30px] shadow-lg shadow-black/50 transition-all duration-300 cursor-pointer flex flex-col items-center justify-center min-h-[200px] hover:-translate-y-1 hover:shadow-xl hover:shadow-black/70 group overflow-hidden">
+                                <span class="text-[1.8rem] font-bold mb-[15px] text-white transition-colors duration-300 group-hover:text-[#fca311]">Database Management</span>
+                                <ul class="sub-skills relative w-full opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-300 mt-4">
+                                    <li class="p-2 border-b border-b-[#333] transition-colors duration-200 hover:text-[#fca311]">SQL</li>
+                                    <li class="p-2 transition-colors duration-200 hover:text-[#fca311]">MongoDB</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+                };
+
+            
+            
+            
+            // Function to populate the coding profiles section
+            const populateCodingProfiles = () => {
+                codingProfilesContainer.innerHTML = ''; // Clear existing content
+                portfolioData.codingProfiles.forEach(profile => {
+                    const profileElement = document.createElement('a');
+                    profileElement.href = profile.link;
+                    profileElement.target = "_blank";
+                    profileElement.className = 'flex items-center gap-4 p-6 bg-neutral-900 rounded-xl shadow-lg border border-neutral-800 transform transition-transform hover:scale-105 hover:bg-neutral-800';
+                    profileElement.innerHTML = `
+                        <div class="text-white/70">${profile.icon_svg}</div>
+                        <div class="flex-grow">
+                            <h3 class="text-xl font-bold text-white">${profile.platform}</h3>
+                            <p class="text-neutral-400">${profile.username}</p>
+                        </div>
+                        ${profile.rating ? `<div class="flex items-center text-emerald-400 font-bold gap-1">
+                            <span>${profile.rating}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up"><path d="m5 12l7-7l7 7"/><path d="M12 19V5"/></svg>
+                        </div>` : ''}
+                    `;
+                    codingProfilesContainer.appendChild(profileElement);
+                });
+            };
+
+            // Function to generate the projects section
+            const populateProjects = () => {
+                projectsContainer.innerHTML = ''; // Clear existing content
+                portfolioData.projects.forEach(project => {
+                    const projectElement = document.createElement('div');
+                    projectElement.className = 'bg-neutral-900 p-6 rounded-3xl shadow-xl transform transition-transform hover:scale-105 hover:shadow-2xl flex flex-col';
+                    projectElement.innerHTML = `
+                        <div class="rounded-2xl mb-4 w-full h-48 overflow-hidden border border-neutral-800">
+                            <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">${project.title}</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${project.skills.map(skill => `<span class="bg-neutral-800 text-neutral-400 text-sm font-semibold px-2.5 py-0.5 rounded-full">${skill}</span>`).join('')}
+                        </div>
+                        <div class="mb-4">
+                            ${project.description.split('. ').map(line => `<p class="text-neutral-300 text-left mb-1">${line}.</p>`).join('')}
+                        </div>
+                        <div class="mt-auto flex space-x-4">
+                            <a href="${project.githubLink}" target="_blank" rel="noopener noreferrer" class="flex-grow text-center bg-neutral-800 hover:bg-neutral-700 transition-colors text-white font-semibold py-2 px-6 rounded-full">
+                                GitHub
+                            </a>
+                            <a href="${project.liveLink}" target="_blank" rel="noopener noreferrer" class="flex-grow text-center bg-amber-400 hover:bg-amber-500 transition-colors text-black font-semibold py-2 px-6 rounded-full">
+                                Live Demo
+                            </a>
+                        </div>
+                    `;
+                    projectsContainer.appendChild(projectElement);
+                });
+            };
+            
+            // Function to populate the activities section
+            const populateActivities = () => {
+                activitiesContainer.innerHTML = '';
+                portfolioData.activities.forEach(activity => {
+                    const activityElement = document.createElement('div');
+                    activityElement.className = 'p-6 bg-neutral-900 rounded-xl shadow-lg border border-neutral-800 transform transition-transform hover:scale-105 hover:bg-neutral-800';
+                    activityElement.innerHTML = `<p class="text-white">${activity}</p>`;
+                    activitiesContainer.appendChild(activityElement);
+                });
+            };
+
+            // Typing animation for the hero section
+            const animateText = (elementId, text, speed, callback) => {
+                const element = document.getElementById(elementId);
+                let i = 0;
+                element.innerHTML = '';
+                const type = () => {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    } else if (callback) {
+                        callback();
+                    }
+                };
+                type();
+            };
+
+            // Sequence of animations for the hero section
+            const heroAnimation = () => {
+                const profilePicContainer = document.getElementById('profile-pic-container');
+                const heroTextContainer = document.getElementById('hero-text-container');
+                
+                // Initial state
+                profilePicContainer.style.transform = 'translateY(100vh)';
+                heroTextContainer.style.opacity = '0';
+                heroTextContainer.style.transform = 'translateY(50px)';
+                
+                setTimeout(() => {
+                    // First animation: Profile picture slides up to center
+                    profilePicContainer.style.transform = 'translateY(0)';
+                }, 500);
+
+                setTimeout(() => {
+                    // Second animation: Profile picture moves to the side
+                    profilePicContainer.classList.add('md:translate-x-0');
+                    profilePicContainer.classList.remove('md:translate-x-[-150px]');
+                    
+                    // Third animation: Text appears with a fade-in and slide-up effect
+                    heroTextContainer.style.opacity = '1';
+                    heroTextContainer.style.transform = 'translateY(0)';
+                    
+                    // Typing animation for the name and title
+                    animateText('hero-name', portfolioData.name, 50, () => {
+                        animateText('hero-title', portfolioData.title, 30);
+                    });
+                }, 1500); // Start text animation after profile picture moves
+            };
+            
+
+            // Intersection Observer for fade-in-on-scroll animation
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the section is visible
+            });
+            
+            // Intersection Observer for skills animation
+            const skillsObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillCards = document.querySelectorAll('#skills-container .skills-grid > div');
+                        skillCards.forEach(skillElement => {
+                            const canvasId = skillElement.dataset.canvasId;
+                            const proficiency = parseInt(skillElement.dataset.proficiency);
+                            const color = skillElement.dataset.color;
+                            const canvas = document.getElementById(canvasId);
+                            
+                            let currentPercent = 0;
+                            const animateProgress = () => {
+                                if (currentPercent < proficiency) {
+                                    drawCircularProgress(canvas, currentPercent, color);
+                                    currentPercent++;
+                                    requestAnimationFrame(animateProgress);
+                                }
+                            };
+                            animateProgress();
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.5 // Trigger when 50% of the section is visible
+            });
+
+
+            // Observe all sections with the class 'animate-on-scroll'
+            document.querySelectorAll('.animate-on-scroll').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Initial population of the sections
+            populateEducation();
+            populateSkills();
+            populateCodingProfiles();
+            populateProjects();
+            populateActivities();
+            
+            // Observe the skills section for animation
+            skillsObserver.observe(document.getElementById('skills'));
+
+            // Run hero animation on page load
+            heroAnimation();
+        });
+    </script>
+</body>
+</html>
